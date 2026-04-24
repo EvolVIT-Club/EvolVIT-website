@@ -1,0 +1,180 @@
+.contact {
+  background: var(--bg-primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.bgGlow {
+  position: absolute;
+  bottom: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 500px;
+  background: radial-gradient(ellipse, rgba(124, 58, 237, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.inner {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.desc {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 8px;
+  max-width: 400px;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+  margin-bottom: 28px;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.contactIcon {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(124, 58, 237, 0.1);
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  border-radius: 8px;
+  color: var(--accent-secondary);
+  flex-shrink: 0;
+}
+
+.socials {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.socialLink {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  font-size: 1.25rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.socialLink:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-color-hover);
+  transform: translateY(-2px);
+}
+
+.right {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  padding: 40px;
+  backdrop-filter: blur(20px);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.textarea {
+  resize: none;
+  height: 130px;
+  padding-top: 20px;
+}
+
+.submitBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 32px;
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 24px rgba(124, 58, 237, 0.35);
+  margin-top: 8px;
+}
+
+.submitBtn:hover {
+  box-shadow: 0 8px 32px rgba(124, 58, 237, 0.55);
+}
+
+.successState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 80px 40px;
+  text-align: center;
+}
+
+.successIcon {
+  font-size: 3rem;
+}
+
+.successState h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.successState p {
+  color: var(--text-secondary);
+}
+
+@media (max-width: 900px) {
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+  .right {
+    padding: 28px 20px;
+  }
+}

@@ -1,0 +1,134 @@
+.team {
+  background: var(--bg-secondary);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.header :global(.section-subtitle) {
+  text-align: center; 
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  padding: 32px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  cursor: default;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-color-hover);
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px rgba(0,0,0,0.3), 0 0 0 1px rgba(124,58,237,0.1);
+}
+
+.avatarWrap {
+  position: relative;
+  width: 96px;
+  height: 96px;
+}
+
+.avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease;
+}
+
+.card:hover .avatar {
+  transform: scale(1.05);
+}
+
+.avatarEmoji {
+  font-size: 2.25rem;
+  line-height: 1;
+}
+
+.socialOverlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: rgba(6, 6, 10, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  backdrop-filter: blur(4px);
+}
+
+.socialIcon {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.socialIcon:hover {
+  background: rgba(124, 58, 237, 0.6);
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+}
+
+.name {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.role {
+  font-size: 0.8125rem;
+  color: var(--accent-secondary);
+  font-weight: 500;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
