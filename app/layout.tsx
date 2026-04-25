@@ -14,6 +14,9 @@ export const metadata: Metadata = {
   description:
     "EvolVIT is a student-driven tech community at VIT focused to bridge the gap between students and the tech industry. Join us to build, learn, and grow.",
   keywords: ["EvolVIT", "VIT", "tech club", "development", "innovation", "real-world expeirence", "student community"],
+  icons: {
+    icon: "/logo.png",
+  },
   openGraph: {
     title: "EvolVIT — Evolving Ideas into Innovation",
     description:
