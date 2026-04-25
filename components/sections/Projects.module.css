@@ -108,3 +108,13 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (hover: none), (max-width: 768px) {
+  .overlay {
+    opacity: 1 !important;
+    transform: none !important;
+    position: relative;
+    background: transparent;
+    padding: 0 24px 24px 24px;
+  }
+}

@@ -73,47 +73,70 @@ const cardVariant = {
 };
 
 const EventCard = ({ event, onSelect }: { event: EvolvitEvent; onSelect: (e: EvolvitEvent) => void }) => (
-  <motion.article
-    className={`${styles.card} glass-card`}
+  <motion.div
+    className={styles.cardWrapper}
     variants={cardVariant}
-    whileHover={{ y: -8 }}
+    whileHover="hover"
+    initial="initial"
+    onClick={() => onSelect(event)}
   >
-    {/* Card Top */}
-    <div className={styles.cardTop} style={{ background: `${event.color}18` }}>
-      <span className={styles.cardEmoji}>{event.emoji}</span>
-      <span className={styles.cardCategory} style={{ color: event.color, borderColor: `${event.color}40`, background: `${event.color}15` }}>
-        {event.category}
-      </span>
-    </div>
+    {/* Animated glowing background */}
+    <motion.div
+      className={styles.cardGlow}
+      style={{ background: event.color }}
+      variants={{
+        initial: { opacity: 0, scale: 0.95 },
+        hover: { opacity: 0.2, scale: 1.02 },
+      }}
+      transition={{ duration: 0.3 }}
+    />
 
-    {/* Card Body */}
-    <div className={styles.cardBody}>
-      <div className={styles.cardDate}>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-          <line x1="16" y1="2" x2="16" y2="6" />
-          <line x1="8" y1="2" x2="8" y2="6" />
-          <line x1="3" y1="10" x2="21" y2="10" />
-        </svg>
-        {event.date}
+    <article className={`${styles.card} glass-card`}>
+      {/* Top Header */}
+      <div className={styles.cardTop} style={{ background: `linear-gradient(180deg, ${event.color}08 0%, transparent 100%)` }}>
+        <div className={styles.categoryBadge} style={{ color: event.color, borderColor: `${event.color}40`, background: `${event.color}10` }}>
+          <span className={styles.glowDot} style={{ background: event.color, boxShadow: `0 0 10px ${event.color}` }} />
+          {event.category}
+        </div>
+        <span className={styles.cardEmoji}>{event.emoji}</span>
       </div>
-      <h3 className={styles.cardTitle}>{event.title}</h3>
-      <p className={styles.cardDesc}>{event.description}</p>
-    </div>
 
-    <div className={styles.cardFooter}>
-      <button
-        className={styles.learnMore}
-        onClick={() => onSelect(event)}
-        style={{ background: 'transparent', border: 'none', cursor: 'pointer', fontFamily: 'inherit', fontSize: 'inherit' }}
-      >
-        Learn more
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-          <path d="M5 12h14M12 5l7 7-7 7" />
-        </svg>
-      </button>
-    </div>
-  </motion.article>
+      {/* Card Body */}
+      <div className={styles.cardBody}>
+        <div className={styles.cardDate}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+            <line x1="16" y1="2" x2="16" y2="6" />
+            <line x1="8" y1="2" x2="8" y2="6" />
+            <line x1="3" y1="10" x2="21" y2="10" />
+          </svg>
+          {event.date}
+        </div>
+        <h3 className={styles.cardTitle}>{event.title}</h3>
+        <p className={styles.cardDesc}>{event.description}</p>
+      </div>
+
+      {/* Footer Interface */}
+      <div className={styles.cardFooter}>
+        <span className={styles.learnMore} style={{ color: event.color }}>
+          Explore Details
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </span>
+      </div>
+
+      {/* Scanning Laser Line */}
+      <motion.div
+        className={styles.cardHighlight}
+        style={{ background: `linear-gradient(90deg, transparent, ${event.color}, transparent)` }}
+        variants={{
+          initial: { opacity: 0, x: '-100%' },
+          hover: { opacity: 1, x: '100%', transition: { repeat: Infinity, duration: 1.5, ease: 'linear' } }
+        }}
+      />
+    </article>
+  </motion.div>
 );
 
 export default function Events() {
