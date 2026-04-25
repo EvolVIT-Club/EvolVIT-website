@@ -15,7 +15,7 @@ const pastEvents: EvolvitEvent[] = [
     extendedDescription: 'EVOLART marked the successful inauguration of the EvolVIT Club, proudly recognized as the 100th club of VIT Bhopal University. This event set the foundation for a journey that blends creativity with innovation.The event provided a vibrant platform for students to showcase their artistic talents through various forms such as digital design, sketching, and creative expression.Participants brought forward unique ideas with great enthusiasm, making the event both engaging and inspiring. As the inaugural event, EVOLART highlighted the club’s vision of fostering creativity, collaboration, and technological excellence.',
     color: '#7c3aed',
     emoji: '🤖',
-    images: ['img1.jpeg', 'img2.jpeg', ''],
+    images: ['img1.jpeg', 'img2.jpeg'],
   },
   {
     title: 'Ideathon',

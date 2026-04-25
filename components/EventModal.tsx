@@ -131,7 +131,21 @@ export default function EventModal({ event, onClose }: EventModalProps) {
                           src={imgSrc}
                           alt={`${event.title} image ${idx + 1}`}
                           onError={(e) => {
-                            e.currentTarget.parentElement!.style.display = 'none';
+                            const parent = e.currentTarget.parentElement;
+                            if (parent) {
+                              parent.style.cursor = 'default';
+                              parent.onclick = null;
+                              parent.innerHTML = `
+                                <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; color:var(--text-secondary); opacity:0.5; font-size: 0.85rem; background: rgba(255,255,255,0.02)">
+                                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                                    <circle cx="8.5" cy="8.5" r="1.5" />
+                                    <polyline points="21 15 16 10 5 21" />
+                                  </svg>
+                                  <span style="margin-top:8px">Missing File</span>
+                                </div>
+                              `;
+                            }
                           }}
                         />
                       </div>
