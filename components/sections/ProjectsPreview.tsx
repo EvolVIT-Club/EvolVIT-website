@@ -15,22 +15,22 @@ const projects = [
     live: 'https://quantumard-project-management-syste.vercel.app/',
     color: '#7c3aed',
   },
-  // {
-  //   title: 'EcoTrack',
-  //   description: 'Real-time carbon footprint tracker with ML-powered recommendations and gamification.',
-  //   tech: ['React', 'FastAPI', 'ML', 'Firebase'],
-  //   github: '#',
-  //   live: '#',
-  //   color: '#059669',
-  // },
-  // {
-  //   title: 'DevConnect',
-  //   description: 'A social platform for developers to showcase portfolios, find collaborators, and share projects.',
-  //   tech: ['React', 'Node.js', 'MongoDB', 'Socket.io'],
-  //   github: '#',
-  //   live: '#',
-  //   color: '#3b82f6',
-  // },
+  {
+    title: 'SmartCity AI',
+    description: 'Smart City is a digital platform that monitors and manages urban systems like traffic, pollution, energy, and public services in real time, helping improve efficiency and quality of life. ',
+    tech: ['React', 'Next.js', 'Tailwind CSS', 'Authentication'],
+    github: 'https://github.com/AbhiralJain07/Smart-city.git',
+    live: 'https://smart-city-black.vercel.app/',
+    color: '#059669',
+  },
+  {
+    title: 'TraceIt ',
+    description: 'TraceIt is a web platform designed to help users track and manage items efficiently, making it easier to locate lost belongings or organize important assets through a simple and intuitive interface..',
+    tech: ['React', 'Next.js', 'Tailwind CSS', 'Authentication'],
+    github: 'https://github.com/Parth-Gholap/Trace-IT.git',
+    live: 'https://trace-it-ten.vercel.app/',
+    color: '#3b82f6',
+  },
 ];
 
 const container = {

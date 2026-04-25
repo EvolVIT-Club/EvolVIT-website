@@ -13,10 +13,10 @@ const footerLinks: Record<string, { label: string; href: string }[]> = {
     { label: 'Projects', href: '/projects' },
   ],
   Initiatives: [
-    { label: 'EvolVIT X DataTrack', href: '/about' },
-    { label: 'EvolVIT X Quantamard', href: '/about' },
-    // { label: 'EvolVIT X Code & Learn', href: '/about' },
-    // { label: 'EvolVIT X Placement Prep', href: '/about' },
+    { label: 'EvolVIT X DataTrack', href: '/projects' },
+    { label: 'EvolVIT X Quantamard', href: '/projects' },
+    // { label: 'EvolVIT X Code & Learn', href: '/projects' },
+    // { label: 'EvolVIT X Placement Prep', href: '/projects' },
   ],
   Connect: [
     { label: 'Instagram', href: 'https://www.instagram.com/evolvit.vit/' },

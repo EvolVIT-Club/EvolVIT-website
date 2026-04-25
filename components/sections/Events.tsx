@@ -15,7 +15,7 @@ const pastEvents: EvolvitEvent[] = [
     extendedDescription: 'EVOLART marked the successful inauguration of the EvolVIT Club, proudly recognized as the 100th club of VIT Bhopal University. This event set the foundation for a journey that blends creativity with innovation.The event provided a vibrant platform for students to showcase their artistic talents through various forms such as digital design, sketching, and creative expression.Participants brought forward unique ideas with great enthusiasm, making the event both engaging and inspiring. As the inaugural event, EVOLART highlighted the club’s vision of fostering creativity, collaboration, and technological excellence.',
     color: '#7c3aed',
     emoji: '🤖',
-    images: ['img1.jpg', 'img2', 'img3'],
+    images: ['img1.jpeg', 'img2.jpeg', ''],
   },
   {
     title: 'Ideathon',
@@ -25,7 +25,7 @@ const pastEvents: EvolvitEvent[] = [
     extendedDescription: 'IDEATHON – IDEA TO INDUSTRY’26 was an innovative event organized by the EvolVIT Club, aimed at transforming creative ideas into practical, real-world solutions.Participants showcased their problem-solving abilities by presenting unique and impactful concepts, focusing on innovation, feasibility, and real-world applications. The event encouraged critical thinking, collaboration, and an entrepreneurial mindset among students.\n\nIDEATHON successfully bridged the gap between ideas and industry-driven solutions, reflecting EvolVIT’s vision of fostering innovation and technological growth. 🚀 ',
     color: '#a855f7',
     emoji: '⚡',
-    images: ['img1.jpg', 'img2', 'img3', 'img4'],
+    // images: ['img1.jpg', 'img2', 'img3', 'img4'],
   },
   {
     title: 'Industrial Visit',
@@ -35,7 +35,7 @@ const pastEvents: EvolvitEvent[] = [
     extendedDescription: 'The Industrial Visit organized by EvolVIT Club provided students with real-world exposure to industry practices.\n\nParticipants gained insights into AI workflows, team collaboration, and the practical application of technical skills in a professional environment. The visit enhanced students’ understanding of industry expectations and inspired them to pursue excellence in their academic and professional journeys.',
     color: '#3b82f6',
     emoji: '🔧',
-    images: ['img1', 'img2'],
+    images: ['img4.jpg', 'img5.jpg'],
   },
   {
     title: 'Orientation Program',
@@ -45,7 +45,7 @@ const pastEvents: EvolvitEvent[] = [
     extendedDescription: 'Brigadier Rajneesh Gaur, an alumnus of the prestigious National Defence Academy (NDA) and a distinguished veteran of the Indian Army, graced the occasion as the esteemed Chief Guest. His illustrious career, marked by valor and leadership, provided a beacon of inspiration for the young minds present. Brigadier Gaur’s address centered on the pivotal role of youth in shaping the trajectory of a developed India, emphasizing the critical period from 2026 to 2047. He eloquently articulated how the youth, armed with innovation, determination, and a commitment to excellence, are the driving force behind the nation’s transformation. His insights resonated deeply with the audience, encouraging them to embrace their potential as catalysts of change and to contribute meaningfully to India’s journey towards becoming a global leader.',
     color: '#06b6d4',
     emoji: '📊',
-    images: ['img1', 'img2', 'img3'],
+    images: ['img6.jpg', 'img7.jpg', 'img8.jpg'],
   },
 ];
 

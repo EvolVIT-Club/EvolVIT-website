@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './EventModal.module.css';
 
@@ -22,6 +22,7 @@ interface EventModalProps {
 
 export default function EventModal({ event, onClose }: EventModalProps) {
   const modalRef = useRef<HTMLDivElement>(null);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   // Close on Escape key
   useEffect(() => {
@@ -55,6 +56,7 @@ export default function EventModal({ event, onClose }: EventModalProps) {
     <AnimatePresence>
       {event && (
         <motion.div
+          key="event-modal-overlay"
           className={styles.overlay}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -121,16 +123,20 @@ export default function EventModal({ event, onClose }: EventModalProps) {
                   For now, we generate placeholder cards based on the images array length.
                 */}
                 {event.images && event.images.length > 0 ? (
-                  event.images.map((img, idx) => (
-                    <div key={idx} className={styles.imagePlaceholder}>
-                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                        <circle cx="8.5" cy="8.5" r="1.5" />
-                        <polyline points="21 15 16 10 5 21" />
-                      </svg>
-                      <span>Image {idx + 1} Placeholder</span>
-                    </div>
-                  ))
+                  event.images.map((img, idx) => {
+                    const imgSrc = img.startsWith('src') ? img.replace('src/', '/') : img.startsWith('/') ? img : `/${img}`;
+                    return (
+                      <div key={idx} className={styles.imageWrapper} onClick={() => setSelectedImage(imgSrc)}>
+                        <img
+                          src={imgSrc}
+                          alt={`${event.title} image ${idx + 1}`}
+                          onError={(e) => {
+                            e.currentTarget.parentElement!.style.display = 'none';
+                          }}
+                        />
+                      </div>
+                    );
+                  })
                 ) : (
                   <p className={styles.description} style={{ fontStyle: 'italic', opacity: 0.7 }}>
                     No images available yet.
@@ -139,6 +145,25 @@ export default function EventModal({ event, onClose }: EventModalProps) {
               </div>
             </div>
           </motion.div>
+        </motion.div>
+      )}
+
+      {selectedImage && (
+        <motion.div
+          key="lightbox-overlay"
+          className={styles.fullImageOverlay}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          onClick={() => setSelectedImage(null)}
+        >
+          <img src={selectedImage} alt="Expanded view" className={styles.fullImage} />
+          <button className={styles.closeFullButton} onClick={() => setSelectedImage(null)}>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
         </motion.div>
       )}
     </AnimatePresence>

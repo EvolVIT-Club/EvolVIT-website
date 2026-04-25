@@ -45,7 +45,9 @@ export default function Navbar() {
         <div className={styles.navInner}>
           {/* Logo */}
           <Link href="/" className={styles.logo}>
-            <span className={styles.logoIcon}>⬡</span>
+            <span className={styles.logoIcon}>
+              <img src="/logo.png" alt="Logo" style={{ height: '96px', width: 'auto', display: 'block' }} />
+            </span>
             <span className={styles.logoText}>EvolVIT</span>
           </Link>
 

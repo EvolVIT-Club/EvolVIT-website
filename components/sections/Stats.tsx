@@ -27,10 +27,10 @@ function useCountUp(target: number, duration: number, active: boolean): number {
 }
 
 const stats = [
-  { value: 500, suffix: '+', label: 'Active Members', desc: 'Students engaged across domains' },
-  { value: 50, suffix: '+', label: 'Events Conducted', desc: 'Workshops, talks & hackathons' },
-  { value: 30, suffix: '+', label: 'Projects Built', desc: 'Real products shipped to production' },
-  { value: 15, suffix: '+', label: 'Industry Partners', desc: 'Companies we collaborate with' },
+  { value: 35, suffix: '+', label: 'Active Members', desc: 'Students engaged across domains' },
+  { value: 4, suffix: '+', label: 'Events Conducted', desc: 'Workshops, talks & hackathons' },
+  { value: 5, suffix: '+', label: 'Projects Built', desc: 'Real products shipped to production' },
+  { value: 2, suffix: '+', label: 'Industry Partners', desc: 'Companies we collaborate with' },
 ];
 
 export default function Stats() {

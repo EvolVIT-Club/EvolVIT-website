@@ -18,6 +18,18 @@
   gap: 24px;
 }
 
+.facultyGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+
+.facultyGrid > div {
+  width: 100%;
+  max-width: 270px;
+}
+
 .card {
   display: flex;
   flex-direction: column;

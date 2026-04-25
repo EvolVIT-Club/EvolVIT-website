@@ -107,7 +107,7 @@ export default function Hero() {
               </div>
               <div className={styles.floatDivider} />
               <div className={styles.floatStat}>
-                <span className={styles.floatNum}>2+</span>
+                <span className={styles.floatNum}>4+</span>
                 <span className={styles.floatLabel}>Projects</span>
               </div>
             </div>
