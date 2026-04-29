@@ -13,6 +13,7 @@ export interface EvolvitEvent {
   color: string;
   emoji: string;
   images?: string[];
+  registrationUrl?: string;
 }
 
 interface EventModalProps {
