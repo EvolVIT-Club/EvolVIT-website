@@ -54,6 +54,45 @@
   margin: 0 auto;
 }
 
+.upcomingActions {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.primaryRegisterButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  padding: 0 28px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f59e0b, #ec4899);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  box-shadow: 0 16px 40px rgba(236, 72, 153, 0.22);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.primaryRegisterButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 48px rgba(236, 72, 153, 0.28);
+  filter: brightness(1.04);
+}
+
+.upcomingHint {
+  text-align: center;
+  color: var(--text-secondary);
+  margin: 0 auto 80px;
+  max-width: 620px;
+  position: relative;
+  z-index: 1;
+}
+
 /* ===== GRID ===== */
 .grid {
   display: grid;
@@ -260,6 +299,14 @@
   margin-top: auto;
 }
 
+.cardActions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
 /* Gradient fade divider */
 .footerDivider {
   height: 1px;
@@ -303,6 +350,28 @@
   transform: translateX(4px);
 }
 
+.registerButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 112px;
+  min-height: 42px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  font-size: 0.85rem;
+  font-weight: 700;
+  transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.registerButton:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.08);
+}
+
 /* ===== SECTION CTA ===== */
 .cta {
   text-align: center;
@@ -329,5 +398,14 @@
 
   .cardFooter {
     padding: 16px 24px 24px;
+  }
+
+  .cardActions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .registerButton {
+    width: 100%;
   }
 }
