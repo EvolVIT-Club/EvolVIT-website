@@ -81,7 +81,7 @@ export default function Hero() {
             </svg>
           </Link>
           <Link href="/events" className={`${styles.ctaSecondary}`}>
-            View Events
+            Learn more
           </Link>
         </motion.div>
 

@@ -153,6 +153,18 @@
   transition: all 0.3s ease;
 }
 
+.barOpen {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.barOpen2 {
+  opacity: 0;
+}
+
+.barOpen3 {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
 .mobileMenu {
   display: none;
   flex-direction: column;

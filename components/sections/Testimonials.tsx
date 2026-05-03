@@ -11,6 +11,7 @@ const testimonials = [
     role: "ML Engineer at Google",
     year: "EvolVIT Alum '23",
     initial: "K",
+    color: '#7c3aed',
   },
   {
     quote: "The community here is unlike any other. You're surrounded by people who genuinely want to build, not just talk about building. That energy is contagious.",
@@ -18,6 +19,7 @@ const testimonials = [
     role: "SDE at Flipkart",
     year: "EvolVIT Alum '23",
     initial: "M",
+    color: '#06b6d4',
   },
   {
     quote: "HackEvol was the best experience of my college life. The things I learned in 24 hours were worth more than a semester of classes.",
@@ -25,6 +27,7 @@ const testimonials = [
     role: "Startup Founder",
     year: "EvolVIT Member '24",
     initial: "A",
+    color: '#f59e0b',
   },
   {
     quote: "EvolVIT's open source program got me my first real GitHub contributions and helped me land my internship. Forever grateful.",
@@ -32,15 +35,35 @@ const testimonials = [
     role: "Intern at Microsoft",
     year: "EvolVIT Member '25",
     initial: "P",
+    color: '#10b981',
   },
 ];
 
-const gradients = [
-  'linear-gradient(135deg, #7c3aed, #a855f7)',
-  'linear-gradient(135deg, #3b82f6, #06b6d4)',
-  'linear-gradient(135deg, #f59e0b, #ef4444)',
-  'linear-gradient(135deg, #059669, #06b6d4)',
-];
+/* ── Corner Accent ───────────────────────────────────────────────── */
+function CornerAccent({ color, position }: { color: string; position: 'tl' | 'tr' | 'bl' | 'br' }) {
+  let classes = styles.cornerAccent;
+  if (position === 'tl') classes += ` ${styles.cornerTL}`;
+  if (position === 'tr') classes += ` ${styles.cornerTR}`;
+  if (position === 'bl') classes += ` ${styles.cornerBL}`;
+  if (position === 'br') classes += ` ${styles.cornerBR}`;
+
+  const isTop = position.includes('t');
+  const isLeft = position.includes('l');
+  
+  const cx = isLeft ? 1 : 23;
+  const cy = isTop ? 1 : 23;
+
+  const pathD = isTop
+    ? isLeft ? "M1 12 L1 1 L12 1" : "M23 12 L23 1 L12 1"
+    : isLeft ? "M1 12 L1 23 L12 23" : "M23 12 L23 23 L12 23";
+
+  return (
+    <svg className={classes} width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <path d={pathD} stroke={color} strokeWidth="1.5" strokeOpacity="0.6" />
+      <circle cx={cx} cy={cy} r="2" fill={color} fillOpacity="0.85" />
+    </svg>
+  );
+}
 
 export default function Testimonials() {
   const ref = useRef(null);
@@ -54,7 +77,10 @@ export default function Testimonials() {
 
   return (
     <section id="testimonials" className={styles.testimonials} ref={ref}>
+      <div className={styles.gridBg} />
+      <div className={styles.noiseOverlay} />
       <div className={styles.bgGlow} />
+
       <div className="container">
         <motion.div
           className={styles.header}
@@ -77,21 +103,34 @@ export default function Testimonials() {
           <AnimatePresence mode="wait">
             <motion.div
               key={active}
-              className={styles.quote}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.35 }}
+              className={styles.cardWrapper}
+              initial={{ opacity: 0, x: 40, filter: 'blur(8px)' }}
+              animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+              exit={{ opacity: 0, x: -40, filter: 'blur(8px)' }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
             >
-              <div className={styles.quoteIcon}>&ldquo;</div>
-              <p className={styles.quoteText}>{t.quote}</p>
-              <div className={styles.author}>
-                <div className={styles.authorAvatar} style={{ background: gradients[active % gradients.length] }}>
-                  {t.initial}
-                </div>
-                <div className={styles.authorInfo}>
-                  <span className={styles.authorName}>{t.name}</span>
-                  <span className={styles.authorRole}>{t.role} · {t.year}</span>
+              <div className={styles.cardGlow} style={{ background: `radial-gradient(ellipse, ${t.color}40, transparent 70%)` }} />
+              <div className={styles.cardBorderGlow} />
+
+              <div className={styles.quote}>
+                <div className={styles.circuitOverlay} />
+                
+                <CornerAccent color={t.color} position="tl" />
+                <CornerAccent color={t.color} position="tr" />
+                <CornerAccent color={t.color} position="bl" />
+                <CornerAccent color={t.color} position="br" />
+
+                <div className={styles.quoteIcon} style={{ color: t.color }}>&ldquo;</div>
+                <p className={styles.quoteText}>{t.quote}</p>
+                
+                <div className={styles.author}>
+                  <div className={styles.authorAvatar} style={{ background: `linear-gradient(135deg, ${t.color}, ${t.color}99)`, boxShadow: `0 4px 12px ${t.color}66` }}>
+                    {t.initial}
+                  </div>
+                  <div className={styles.authorInfo}>
+                    <span className={styles.authorName}>{t.name}</span>
+                    <span className={styles.authorRole}>{t.role} · {t.year}</span>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -106,6 +145,7 @@ export default function Testimonials() {
                   className={`${styles.dot} ${i === active ? styles.dotActive : ''}`}
                   onClick={() => setActive(i)}
                   aria-label={`Go to testimonial ${i + 1}`}
+                  style={i === active ? { background: `linear-gradient(90deg, ${t.color}, ${t.color}99)` } : {}}
                 />
               ))}
             </div>

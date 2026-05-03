@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import styles from './Footer.module.css';
-import Initiatives from './sections/Initiatives';
 
 const footerLinks: Record<string, { label: string; href: string }[]> = {
   Community: [
@@ -15,14 +14,11 @@ const footerLinks: Record<string, { label: string; href: string }[]> = {
   Initiatives: [
     { label: 'EvolVIT X DataTrack', href: '/projects' },
     { label: 'EvolVIT X Quantamard', href: '/projects' },
-    // { label: 'EvolVIT X Code & Learn', href: '/projects' },
-    // { label: 'EvolVIT X Placement Prep', href: '/projects' },
   ],
   Connect: [
     { label: 'Instagram', href: 'https://www.instagram.com/evolvit.vit/' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/company/evolvit-vit/' },
     { label: 'GitHub', href: 'https://github.com/EvolVIT-VIT' },
-    // { label: 'Discord', href: '#' },
   ],
 };
 
@@ -31,13 +27,18 @@ export default function Footer() {
 
   return (
     <footer className={styles.footer}>
+      {/* Background ambient glow */}
+      <div className={styles.bgGlow} />
+
       <div className={styles.top}>
         <div className="container">
           <div className={styles.grid}>
             {/* Brand */}
             <div className={styles.brand}>
               <Link href="/" className={styles.logo}>
-                <span className={styles.logoIcon}>⬡</span>
+                <span className={styles.logoIcon}>
+                  <img src="/logo.png" alt="Logo" style={{ height: '100px', width: 'auto', display: 'block', marginLeft: '-12px' }} />
+                </span>
                 <span className={styles.logoText}>EvolVIT</span>
               </Link>
               <p className={styles.tagline}>
@@ -45,17 +46,16 @@ export default function Footer() {
               </p>
               <div className={styles.socials}>
                 {[
-                  { href: 'https://www.instagram.com/evolvit.vit/ ', icon: '📸', label: 'Instagram' },
+                  { href: 'https://www.instagram.com/evolvit.vit/', icon: '📸', label: 'Instagram' },
                   { href: 'https://www.linkedin.com/company/evolvit-vit/', icon: '💼', label: 'LinkedIn' },
                   { href: 'https://github.com/EvolVIT-VIT', icon: '🐙', label: 'GitHub' },
-                  // { href: '#', icon: '💬', label: 'Discord' },
                 ].map((s) => (
                   <motion.a
                     key={s.label}
                     href={s.href}
                     className={styles.socialIcon}
                     title={s.label}
-                    whileHover={{ y: -3, scale: 1.1 }}
+                    whileHover={{ y: -3, scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
                     {s.icon}
@@ -67,11 +67,16 @@ export default function Footer() {
             {/* Links */}
             {Object.entries(footerLinks).map(([category, links]) => (
               <div key={category} className={styles.linkGroup}>
-                <h4 className={styles.linkGroupTitle}>{category}</h4>
+                <h4 className={styles.linkGroupTitle}>
+                  <span className={styles.titleGradient}>{category}</span>
+                </h4>
                 <ul className={styles.linkList}>
                   {links.map((link) => (
                     <li key={link.label}>
-                      <Link href={link.href} className={styles.link}>{link.label}</Link>
+                      <Link href={link.href} className={styles.link}>
+                        {link.label}
+                        <span className={styles.linkHoverLine} />
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -85,7 +90,7 @@ export default function Footer() {
         <div className="container">
           <div className={styles.bottomInner}>
             <p className={styles.copyright}>
-              © {year} EvolVIT. Built with ❤️ by students, for students.
+              © {year} EvolVIT. Built with <span className={styles.heart}>❤️</span> by students, for students.
             </p>
             <div className={styles.legal}>
               <a href="#">Privacy Policy</a>

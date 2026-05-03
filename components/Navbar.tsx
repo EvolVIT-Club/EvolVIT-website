@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
+import { motion, useScroll, useMotionValueEvent, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTheme } from './ThemeProvider';
@@ -14,6 +14,32 @@ const navLinks = [
   { href: '/team', label: 'Team' },
   { href: '/contact', label: 'Contact' },
 ];
+
+const mobileMenuVars = {
+  hidden: { opacity: 0, y: -20, scale: 0.95 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    scale: 1,
+    transition: { 
+      duration: 0.4, 
+      ease: [0.22, 1, 0.36, 1],
+      staggerChildren: 0.08,
+      delayChildren: 0.1
+    } 
+  },
+  exit: { 
+    opacity: 0, 
+    y: -10, 
+    scale: 0.95,
+    transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } 
+  }
+};
+
+const mobileLinkVars = {
+  hidden: { opacity: 0, x: -20 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } }
+};
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -109,27 +135,35 @@ export default function Navbar() {
         </div>
 
         {/* Mobile menu */}
-        {menuOpen && (
-          <motion.div
-            className={styles.mobileMenu}
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-          >
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`${styles.mobileLink} ${pathname === link.href ? styles.mobileLinkActive : ''}`}
-                onClick={() => setMenuOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <Link href="/contact" className={styles.mobileCta} onClick={() => setMenuOpen(false)}>
-              Join Us
-            </Link>
-          </motion.div>
-        )}
+        <AnimatePresence>
+          {menuOpen && (
+            <motion.div
+              className={styles.mobileMenu}
+              variants={mobileMenuVars}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+            >
+              {navLinks.map((link) => (
+                <motion.div key={link.href} variants={mobileLinkVars}>
+                  <Link
+                    href={link.href}
+                    className={`${styles.mobileLink} ${pathname === link.href ? styles.mobileLinkActive : ''}`}
+                    onClick={() => setMenuOpen(false)}
+                    style={{ display: 'block' }}
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
+              ))}
+              <motion.div variants={mobileLinkVars}>
+                <Link href="/contact" className={styles.mobileCta} onClick={() => setMenuOpen(false)}>
+                  Join Us
+                </Link>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.nav>
     </>
   );

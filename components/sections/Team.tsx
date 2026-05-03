@@ -4,11 +4,12 @@ import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import styles from './Team.module.css';
 
+/* ── Data ─────────────────────────────────────────────────────────── */
 const team = [
   { name: 'Ayush Karan', role: 'President', emoji: '👨‍💻', image: '/team/ayush.jpg', Instagram: '#', linkedin: '#', github: '#' },
   { name: 'Parth Gholap', role: 'President', emoji: '👨‍💻', image: '/team/parth.jpg', Instagram: '#', linkedin: '#', github: '#' },
-  { name: 'Ashish Raj', role: 'General Secratary', emoji: '👩‍🔬', image: '/team/ashish.jpg', Instagram: '#', linkedin: '#', github: '#' },
-  { name: 'Abhiral Jain', role: 'Lead — Research and Development', emoji: '👩‍🔬', image: '/team/abhiral.jpg', Instagram: 'https://www.instagram.com/abhirallll___/', linkedin: 'https://www.linkedin.com/in/jainabhiral/', github: 'https://github.com/AbhiralJain07' },
+  { name: 'Ashish Raj', role: 'General Secretary', emoji: '👩‍🔬', image: '/team/ashish.jpg', Instagram: '#', linkedin: '#', github: '#' },
+  { name: 'Abhiral Jain', role: 'Lead — Research and Dev', emoji: '👩‍🔬', image: '/team/abhiral.jpeg', Instagram: 'https://www.instagram.com/abhirallll___/', linkedin: 'https://www.linkedin.com/in/jainabhiral/', github: 'https://github.com/AbhiralJain07' },
   { name: 'Rishi Dewangan', role: 'Lead — Technical', emoji: '🌐', image: '/team/rishi.jpg', Instagram: '#', linkedin: '#', github: '#' },
   { name: 'Manasvi Kirkire', role: 'Lead — Design', emoji: '🎨', image: '/team/manasvi.jpg', Instagram: '#', linkedin: '#', github: '#' },
   { name: 'Vaishnavi Singh', role: 'Lead — Media', emoji: '📷', image: '/team/vaishnavi.jpg', twitter: '#', linkedin: '#', github: '#' },
@@ -19,6 +20,7 @@ const faculty = [
   { name: 'NB Prakash', role: 'Faculty Coordinator', emoji: '👨‍🏫', image: '/team/nb_prakash.jpg', Instagram: '#', linkedin: '#', github: '#' },
 ];
 
+/* ── Colors ──────────────────────────────────────────────────────── */
 const gradients = [
   'linear-gradient(135deg, #7c3aed, #a855f7)',
   'linear-gradient(135deg, #3b82f6, #7c3aed)',
@@ -30,10 +32,39 @@ const gradients = [
   'linear-gradient(135deg, #7c3aed, #06b6d4)',
 ];
 
+const hexColors = ['#7c3aed', '#3b82f6', '#a855f7', '#06b6d4', '#059669', '#f59e0b', '#ec4899', '#7c3aed'];
+
+/* ── Corner Accent ───────────────────────────────────────────────── */
+function CornerAccent({ color, position }: { color: string; position: 'tl' | 'tr' | 'bl' | 'br' }) {
+  let classes = styles.cornerAccent;
+  if (position === 'tl') classes += ` ${styles.cornerTL}`;
+  if (position === 'tr') classes += ` ${styles.cornerTR}`;
+  if (position === 'bl') classes += ` ${styles.cornerBL}`;
+  if (position === 'br') classes += ` ${styles.cornerBR}`;
+
+  const isTop = position.includes('t');
+  const isLeft = position.includes('l');
+  
+  const cx = isLeft ? 1 : 23;
+  const cy = isTop ? 1 : 23;
+
+  const pathD = isTop
+    ? isLeft ? "M1 12 L1 1 L12 1" : "M23 12 L23 1 L12 1"
+    : isLeft ? "M1 12 L1 23 L12 23" : "M23 12 L23 23 L12 23";
+
+  return (
+    <svg className={classes} width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <path d={pathD} stroke={color} strokeWidth="1.5" strokeOpacity="0.6" />
+      <circle cx={cx} cy={cy} r="2" fill={color} fillOpacity="0.85" />
+    </svg>
+  );
+}
+
+/* ── MemberCard Component ────────────────────────────────────────── */
 function MemberCard({ member, index, inView }: { member: any; index: number; inView: boolean }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const gradient = gradients[index % gradients.length];
-  const baseColor = ['#7c3aed','#3b82f6','#a855f7','#06b6d4','#059669','#f59e0b','#ec4899','#7c3aed'][index % 8];
+  const baseColor = hexColors[index % hexColors.length];
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const el = cardRef.current;
@@ -43,19 +74,19 @@ function MemberCard({ member, index, inView }: { member: any; index: number; inV
     const y = e.clientY - rect.top;
     const rotateX = ((y - rect.height / 2) / (rect.height / 2)) * -5;
     const rotateY = ((x - rect.width / 2) / (rect.width / 2)) * 5;
-    el.style.transform = `perspective(700px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px) scale(1.03)`;
+    el.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px) scale(1.02)`;
   };
 
   const handleMouseLeave = () => {
     const el = cardRef.current;
     if (!el) return;
-    el.style.transform = 'perspective(700px) rotateX(0) rotateY(0) translateY(0) scale(1)';
+    el.style.transform = 'perspective(800px) rotateX(0) rotateY(0) translateY(0) scale(1)';
   };
 
   return (
     <motion.div
       className={styles.cardWrapper}
-      initial={{ opacity: 0, y: 40, filter: 'blur(6px)' }}
+      initial={{ opacity: 0, y: 40, filter: 'blur(8px)' }}
       animate={inView ? { opacity: 1, y: 0, filter: 'blur(0px)' } : {}}
       transition={{ duration: 0.6, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }}
       onMouseMove={handleMouseMove}
@@ -64,9 +95,27 @@ function MemberCard({ member, index, inView }: { member: any; index: number; inV
       style={{ transition: 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)' }}
     >
       {/* Ambient glow */}
-      <div className={styles.cardGlow} style={{ background: `radial-gradient(circle, ${baseColor}, transparent 70%)` }} />
+      <div className={styles.cardGlow} style={{ background: `radial-gradient(circle, ${baseColor}55, transparent 70%)` }} />
+
+      {/* Spinning gradient border */}
+      <div className={styles.cardBorderGlow} />
 
       <div className={styles.card}>
+        {/* Tech Circuit Overlay */}
+        <div className={styles.circuitOverlay} />
+
+        {/* Corner Accents */}
+        <CornerAccent color={baseColor} position="tl" />
+        <CornerAccent color={baseColor} position="br" />
+
+        {/* Top Scan Line */}
+        <motion.div
+          className={styles.scanLine}
+          style={{ background: `linear-gradient(90deg, transparent, ${baseColor}, transparent)` }}
+          initial={{ opacity: 0, x: '-100%' }}
+          whileHover={{ opacity: 1, x: '100%', transition: { repeat: Infinity, duration: 1.5, ease: 'linear' } }}
+        />
+
         {/* Avatar */}
         <div className={styles.avatarWrap}>
           {/* Glow ring */}
@@ -91,7 +140,9 @@ function MemberCard({ member, index, inView }: { member: any; index: number; inV
 
         <div className={styles.info}>
           <h3 className={styles.name}>{member.name}</h3>
-          <p className={styles.role}>{member.role}</p>
+          <div className={styles.roleBadge} style={{ color: baseColor, background: `${baseColor}15`, borderColor: `${baseColor}30` }}>
+            {member.role}
+          </div>
 
           <div className={styles.socialRow}>
             {member.twitter && (
@@ -130,13 +181,19 @@ function MemberCard({ member, index, inView }: { member: any; index: number; inV
   );
 }
 
+/* ── Section Component ───────────────────────────────────────────── */
 export default function Team() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
 
   return (
     <section id="team" className={styles.team} ref={ref}>
+      {/* Background decorations */}
+      <div className={styles.gridBg} />
+      <div className={styles.noiseOverlay} />
+
       <div className="container">
+        {/* Main Team Header */}
         <motion.div
           className={styles.header}
           initial={{ opacity: 0, y: 30 }}
@@ -152,6 +209,7 @@ export default function Team() {
           </p>
         </motion.div>
 
+        {/* Main Team Grid */}
         <div className={styles.grid}>
           {team.map((member, i) => (
             <MemberCard key={member.name} member={member} index={i} inView={inView} />
@@ -159,13 +217,14 @@ export default function Team() {
         </div>
 
         {/* Divider */}
-        <div className="section-divider" style={{ margin: '80px 0' }} />
+        <div className="section-divider" style={{ margin: '100px 0' }} />
 
         {/* Faculty Header */}
         <motion.div
           className={styles.header}
           initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.7 }}
         >
           <h2 className="section-title">
@@ -179,7 +238,7 @@ export default function Team() {
         {/* Faculty Grid */}
         <div className={styles.facultyGrid}>
           {faculty.map((member, i) => (
-            <MemberCard key={member.name} member={member} index={i} inView={inView} />
+            <MemberCard key={member.name} member={member} index={i} inView={true} />
           ))}
         </div>
       </div>

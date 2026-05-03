@@ -3,17 +3,18 @@
 import { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Link from 'next/link';
-import styles from './Events.module.css';
-import previewStyles from './Preview.module.css';
+import styles from './EventsPreview.module.css';
 import EventModal, { type EvolvitEvent } from '../EventModal';
 
+/* ── Data ─────────────────────────────────────────────────────────── */
 const events: EvolvitEvent[] = [
   {
     title: 'EvolArt',
     date: 'Feb 5, 2026',
     category: 'Inaugral event',
     description: 'Inaugural event of EvolVIT Club showcasing creativity and innovation.',
-    extendedDescription: 'EVOLART marked the successful inauguration of the EvolVIT Club, proudly recognized as the 100th club of VIT Bhopal University. This event set the foundation for a journey that blends creativity with innovation. The event provided a vibrant platform for students to showcase their artistic talents through various forms such as digital design, sketching, and creative expression. Participants brought forward unique ideas with great enthusiasm, making the event both engaging and inspiring. As the inaugural event, EvolArt highlighted the club’s vision of fostering creativity, collaboration, and technological excellence.',
+    extendedDescription:
+      "EVOLART marked the successful inauguration of the EvolVIT Club, proudly recognized as the 100th club of VIT Bhopal University. This event set the foundation for a journey that blends creativity with innovation. The event provided a vibrant platform for students to showcase their artistic talents through various forms such as digital design, sketching, and creative expression. Participants brought forward unique ideas with great enthusiasm, making the event both engaging and inspiring. As the inaugural event, EvolArt highlighted the club's vision of fostering creativity, collaboration, and technological excellence.",
     color: '#7c3aed',
     emoji: '🤖',
     images: ['img1', 'img2', 'img3'],
@@ -23,31 +24,202 @@ const events: EvolvitEvent[] = [
     date: 'February 17, 2026',
     category: 'Industrial Visit',
     description: 'Industry exposure at Appointy — bridging academics with real-world tech.',
-    extendedDescription: 'The Industrial Visit organized by EvolVIT Club provided students with real-world exposure to industry practices. Students gained insights into AI development, software engineering, and the operational workflows of a growing tech company. The session included interactive discussions and a Q&A segment, enhancing students’ understanding of the professional landscape.',
-    color: '#a855f7',
+    extendedDescription:
+      "The Industrial Visit organized by EvolVIT Club provided students with real-world exposure to industry practices. Students gained insights into AI development, software engineering, and the operational workflows of a growing tech company. The session included interactive discussions and a Q&A segment, enhancing students' understanding of the professional landscape.",
+    color: '#3b82f6',
     emoji: '⚡',
     images: ['img1', 'img2', 'img3', 'img4'],
   },
 ];
 
+/* ── Tech icons by category ──────────────────────────────────────── */
+function getTechIcon(category: string): React.ReactNode {
+  const cat = category.toLowerCase();
+  if (cat.includes('visit') || cat.includes('industry')) {
+    return (
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+        <polyline points="9 22 9 12 15 12 15 22" />
+      </svg>
+    );
+  }
+  if (cat.includes('inaug') || cat.includes('art') || cat.includes('design')) {
+    return (
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+      </svg>
+    );
+  }
+  return <span style={{ fontSize: '0.75rem' }}>&lt;/&gt;</span>;
+}
+
+/* ── Corner accent ───────────────────────────────────────────────── */
+function CornerAccent({ color, position }: { color: string; position: 'tl' | 'br' }) {
+  const isTL = position === 'tl';
+  return (
+    <svg
+      className={`${styles.cornerAccent} ${isTL ? styles.cornerTL : styles.cornerBR}`}
+      width="20" height="20" viewBox="0 0 24 24" fill="none"
+    >
+      {isTL ? (
+        <>
+          <path d="M1 12 L1 1 L12 1" stroke={color} strokeWidth="1.5" strokeOpacity="0.6" />
+          <circle cx="1" cy="1" r="2" fill={color} fillOpacity="0.85" />
+        </>
+      ) : (
+        <>
+          <path d="M23 12 L23 23 L12 23" stroke={color} strokeWidth="1.5" strokeOpacity="0.6" />
+          <circle cx="23" cy="23" r="2" fill={color} fillOpacity="0.85" />
+        </>
+      )}
+    </svg>
+  );
+}
+
+/* ── Framer variants ─────────────────────────────────────────────── */
 const container = {
   hidden: {},
-  show: { transition: { staggerChildren: 0.1 } },
+  show: { transition: { staggerChildren: 0.13, delayChildren: 0.05 } },
 };
 
 const cardVariant = {
-  hidden: { opacity: 0, y: 40 },
-  show: { opacity: 1, y: 0 },
+  hidden: { opacity: 0, y: 48, filter: 'blur(8px)' },
+  show: {
+    opacity: 1, y: 0, filter: 'blur(0px)',
+    transition: { duration: 0.72, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
+  },
 };
 
+/* ── PreviewCard ─────────────────────────────────────────────────── */
+function PreviewCard({ event, onSelect }: { event: EvolvitEvent; onSelect: (e: EvolvitEvent) => void }) {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const glowRef = useRef<HTMLDivElement>(null);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = cardRef.current;
+    if (!card) return;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const cx = rect.width / 2;
+    const cy = rect.height / 2;
+    const rx = ((y - cy) / cy) * -5;
+    const ry = ((x - cx) / cx) * 5;
+    card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-8px) scale(1.02)`;
+    if (glowRef.current) glowRef.current.style.opacity = '1';
+  };
+
+  const handleMouseLeave = () => {
+    if (cardRef.current)
+      cardRef.current.style.transform = 'perspective(900px) rotateX(0deg) rotateY(0deg) translateY(0) scale(1)';
+    if (glowRef.current) glowRef.current.style.opacity = '0';
+  };
+
+  return (
+    <motion.div
+      className={styles.cardWrapper}
+      variants={cardVariant}
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      onClick={() => onSelect(event)}
+      style={{ transition: 'transform 0.35s cubic-bezier(0.4,0,0.2,1)', cursor: 'pointer' }}
+    >
+      {/* Ambient glow */}
+      <div
+        ref={glowRef}
+        className={styles.cardGlow}
+        style={{ background: `radial-gradient(circle, ${event.color}55 0%, transparent 70%)`, opacity: 0 }}
+      />
+
+      {/* Spinning gradient border */}
+      <div className={styles.cardBorderGlow} />
+
+      <article className={styles.card}>
+        {/* Circuit overlay */}
+        <div className={styles.circuitOverlay} />
+
+        {/* Scanning laser */}
+        <motion.div
+          className={styles.scanLine}
+          style={{ background: `linear-gradient(90deg, transparent, ${event.color}, transparent)` }}
+          initial={{ opacity: 0, x: '-100%' }}
+          whileHover={{ opacity: 1, x: '100%', transition: { repeat: Infinity, duration: 1.8, ease: 'linear' } }}
+        />
+
+        {/* Corner accents */}
+        <CornerAccent color={event.color} position="tl" />
+        <CornerAccent color={event.color} position="br" />
+
+        {/* ── Card Top ── */}
+        <div className={styles.cardTop} style={{ background: `linear-gradient(160deg, ${event.color}0a 0%, transparent 100%)` }}>
+          <div
+            className={styles.categoryBadge}
+            style={{ color: event.color, borderColor: `${event.color}35`, background: `${event.color}10` }}
+          >
+            <span className={styles.techIcon} style={{ color: event.color }}>
+              {getTechIcon(event.category)}
+            </span>
+            {event.category}
+          </div>
+          <div
+            className={styles.emojiContainer}
+            style={{ borderColor: `${event.color}20`, boxShadow: `0 0 20px ${event.color}12` }}
+          >
+            <span>{event.emoji}</span>
+          </div>
+        </div>
+
+        {/* ── Card Body ── */}
+        <div className={styles.cardBody}>
+          <div className={styles.cardDate}>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+              <line x1="16" y1="2" x2="16" y2="6" />
+              <line x1="8" y1="2" x2="8" y2="6" />
+              <line x1="3" y1="10" x2="21" y2="10" />
+            </svg>
+            {event.date}
+          </div>
+          <h3 className={styles.cardTitle}>{event.title}</h3>
+          <p className={styles.cardDesc}>{event.description}</p>
+        </div>
+
+        {/* ── Card Footer ── */}
+        <div className={styles.cardFooter}>
+          <div
+            className={styles.footerDivider}
+            style={{ background: `linear-gradient(90deg, transparent, ${event.color}20, transparent)` }}
+          />
+          <button className={styles.ctaBtn} style={{
+            background: `linear-gradient(135deg, #7c3aed, ${event.color})`,
+            boxShadow: `0 4px 20px ${event.color}38`,
+          }}>
+            <span>Learn more</span>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </article>
+    </motion.div>
+  );
+}
+
+/* ── Section ─────────────────────────────────────────────────────── */
 export default function EventsPreview() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
   const [selectedEvent, setSelectedEvent] = useState<EvolvitEvent | null>(null);
 
   return (
-    <section className={styles.events} ref={ref}>
+    <section className={styles.eventsPreview} ref={ref}>
+      {/* Background decorations */}
+      <div className={styles.gridBg} />
+      <div className={styles.noiseOverlay} />
+
       <div className="container">
+        {/* Header */}
         <motion.div
           className={styles.header}
           initial={{ opacity: 0, y: 30 }}
@@ -63,6 +235,7 @@ export default function EventsPreview() {
           </p>
         </motion.div>
 
+        {/* Cards grid */}
         <motion.div
           className={styles.grid}
           variants={container}
@@ -70,59 +243,20 @@ export default function EventsPreview() {
           animate={inView ? 'show' : 'hidden'}
         >
           {events.map((event) => (
-            <motion.article
-              key={event.title}
-              className={`${styles.card} glass-card`}
-              variants={cardVariant}
-              whileHover={{ y: -8 }}
-            >
-              <div className={styles.cardTop} style={{ background: `${event.color}18` }}>
-                <span className={styles.cardEmoji}>{event.emoji}</span>
-                <span
-                  className={styles.cardCategory}
-                  style={{ color: event.color, borderColor: `${event.color}40`, background: `${event.color}15` }}
-                >
-                  {event.category}
-                </span>
-              </div>
-              <div className={styles.cardBody}>
-                <div className={styles.cardDate}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                    <line x1="16" y1="2" x2="16" y2="6" />
-                    <line x1="8" y1="2" x2="8" y2="6" />
-                    <line x1="3" y1="10" x2="21" y2="10" />
-                  </svg>
-                  {event.date}
-                </div>
-                <h3 className={styles.cardTitle}>{event.title}</h3>
-                <p className={styles.cardDesc}>{event.description}</p>
-              </div>
-              <div className={styles.cardFooter}>
-                <button 
-                  className={styles.learnMore}
-                  onClick={() => setSelectedEvent(event)}
-                  style={{ background: 'transparent', border: 'none', cursor: 'pointer', fontFamily: 'inherit', fontSize: 'inherit' }}
-                >
-                  Learn more
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
-                </button>
-              </div>
-            </motion.article>
+            <PreviewCard key={event.title} event={event} onSelect={setSelectedEvent} />
           ))}
         </motion.div>
 
+        {/* View all CTA */}
         <motion.div
-          className={`${styles.cta} ${previewStyles.viewAllWrap}`}
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.5 }}
+          className={styles.ctaWrap}
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.5, duration: 0.6 }}
         >
-          <Link href="/events" className={previewStyles.viewAllBtn}>
+          <Link href="/events" className={styles.viewAllBtn}>
             View All Events
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="M5 12h14M12 5l7 7-7 7" />
             </svg>
           </Link>
