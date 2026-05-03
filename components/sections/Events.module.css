@@ -72,7 +72,6 @@
   margin: 0 auto;
 }
 
-<<<<<<< HEAD
 .upcomingActions {
   display: flex;
   justify-content: center;
@@ -113,9 +112,6 @@
 }
 
 /* ===== GRID ===== */
-=======
-/* ── Grid ───────────────────────────────────────────────────────── */
->>>>>>> aedec0e (first commit)
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -586,7 +582,6 @@
   z-index: 2;
 }
 
-<<<<<<< HEAD
 .cardActions {
   display: flex;
   align-items: center;
@@ -595,9 +590,6 @@
   flex-wrap: wrap;
 }
 
-/* Gradient fade divider */
-=======
->>>>>>> aedec0e (first commit)
 .footerDivider {
   height: 1px;
   margin-bottom: 18px;
@@ -639,7 +631,6 @@
   transform: translateX(3px);
 }
 
-<<<<<<< HEAD
 .registerButton {
   display: inline-flex;
   align-items: center;
@@ -666,7 +657,8 @@
 .cta {
   text-align: center;
   margin-top: 48px;
-=======
+}
+
 /* Ripple effect */
 .ripple {
   position: absolute;
@@ -678,7 +670,6 @@
   margin-left: -50px;
   animation: rippleAnim 0.7s linear;
   pointer-events: none;
->>>>>>> aedec0e (first commit)
 }
 
 @keyframes rippleAnim {

@@ -23,7 +23,7 @@ const mobileMenuVars = {
     scale: 1,
     transition: { 
       duration: 0.4, 
-      ease: [0.22, 1, 0.36, 1],
+      ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
       staggerChildren: 0.08,
       delayChildren: 0.1
     } 
@@ -32,13 +32,13 @@ const mobileMenuVars = {
     opacity: 0, 
     y: -10, 
     scale: 0.95,
-    transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } 
+    transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } 
   }
 };
 
 const mobileLinkVars = {
   hidden: { opacity: 0, x: -20 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] } }
+  visible: { opacity: 1, x: 0, transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } }
 };
 
 export default function Navbar() {

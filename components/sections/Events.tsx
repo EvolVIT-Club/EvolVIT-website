@@ -10,18 +10,10 @@ const pastEvents: EvolvitEvent[] = [
   {
     title: 'EvolART',
     date: 'February 05, 2026',
-<<<<<<< HEAD
     category: 'Inaugural Event',
     description: 'EvolVIT celebrated its launch with a campus-wide poster design competition.',
     extendedDescription:
       'EvolART marked the inauguration of EvolVIT at VIT Bhopal and gave students a platform to showcase creativity through digital and visual design. The event set the tone for a club focused on innovation, collaboration, and practical expression.',
-=======
-    category: 'Inaugral Event',
-    description:
-      'EvolVIT — VIT Bhopal\'s 100th Official Club — is here to spark innovation & creativity across campus! 💡 And we\'re celebrating our grand launch with 🎨 EvolART— The Ultimate Poster Design Competition!',
-    extendedDescription:
-      'EVOLART marked the successful inauguration of the EvolVIT Club, proudly recognized as the 100th club of VIT Bhopal University. This event set the foundation for a journey that blends creativity with innovation.The event provided a vibrant platform for students to showcase their artistic talents through various forms such as digital design, sketching, and creative expression.Participants brought forward unique ideas with great enthusiasm, making the event both engaging and inspiring. As the inaugural event, EVOLART highlighted the club\'s vision of fostering creativity, collaboration, and technological excellence.',
->>>>>>> aedec0e (first commit)
     color: '#7c3aed',
     emoji: 'ART',
     images: ['img1.jpeg', 'img2.jpeg'],
@@ -30,33 +22,19 @@ const pastEvents: EvolvitEvent[] = [
     title: 'Ideathon',
     date: 'February 13-14, 2026',
     category: 'Ideathon',
-<<<<<<< HEAD
     description: 'Idea to Industry connected problem solving with real-world product thinking.',
     extendedDescription:
       'The ideathon encouraged teams to move from raw ideas to workable solutions. Participants focused on feasibility, technical depth, and practical relevance while sharpening their collaboration and presentation skills.',
     color: '#a855f7',
     emoji: 'IDEA',
-=======
-    description: 'Idea to Industry\'26 — turning innovative ideas into real-world solutions.',
-    extendedDescription:
-      'IDEATHON – IDEA TO INDUSTRY\'26 was an innovative event organized by the EvolVIT Club, aimed at transforming creative ideas into practical, real-world solutions.Participants showcased their problem-solving abilities by presenting unique and impactful concepts, focusing on innovation, feasibility, and real-world applications. The event encouraged critical thinking, collaboration, and an entrepreneurial mindset among students.\n\nIDEATHON successfully bridged the gap between ideas and industry-driven solutions, reflecting EvolVIT\'s vision of fostering innovation and technological growth. 🚀 ',
-    color: '#a855f7',
-    emoji: '⚡',
->>>>>>> aedec0e (first commit)
   },
   {
     title: 'Industrial Visit',
     date: 'February 17, 2026',
     category: 'Industrial Visit',
-<<<<<<< HEAD
     description: 'Students explored how technical teams operate in a real company environment.',
     extendedDescription:
       'This visit gave participants direct exposure to professional workflows, cross-functional teamwork, and the practical use of technical skills in industry. It helped bridge classroom learning with workplace expectations.',
-=======
-    description: 'Industry exposure at Appointy — bridging academics with real-world tech.',
-    extendedDescription:
-      'The Industrial Visit organized by EvolVIT Club provided students with real-world exposure to industry practices.\n\nParticipants gained insights into AI workflows, team collaboration, and the practical application of technical skills in a professional environment. The visit enhanced students\' understanding of industry expectations and inspired them to pursue excellence in their academic and professional journeys.',
->>>>>>> aedec0e (first commit)
     color: '#3b82f6',
     emoji: 'IND',
     images: ['img4.jpg', 'img5.jpg'],
@@ -65,15 +43,9 @@ const pastEvents: EvolvitEvent[] = [
     title: 'Orientation Program',
     date: 'April 16, 2026',
     category: 'Orientation',
-<<<<<<< HEAD
     description: 'A keynote-driven session on youth leadership, innovation, and nation building.',
     extendedDescription:
       'The orientation program invited students to think beyond academics and consider the larger role of youth in shaping future India. The session focused on leadership, innovation, and responsibility over the coming decades.',
-=======
-    description: 'Youth as Game changers for Viksit Bharat - Role from 2026 to 2047',
-    extendedDescription:
-      'Brigadier Rajneesh Gaur, an alumnus of the prestigious National Defence Academy (NDA) and a distinguished veteran of the Indian Army, graced the occasion as the esteemed Chief Guest. His illustrious career, marked by valor and leadership, provided a beacon of inspiration for the young minds present. Brigadier Gaur\'s address centered on the pivotal role of youth in shaping the trajectory of a developed India, emphasizing the critical period from 2026 to 2047. He eloquently articulated how the youth, armed with innovation, determination, and a commitment to excellence, are the driving force behind the nation\'s transformation. His insights resonated deeply with the audience, encouraging them to embrace their potential as catalysts of change and to contribute meaningfully to India\'s journey towards becoming a global leader.',
->>>>>>> aedec0e (first commit)
     color: '#06b6d4',
     emoji: 'TALK',
     images: ['img6.jpg', 'img7.jpg', 'img8.jpg'],
@@ -85,7 +57,6 @@ const upcomingEvents: EvolvitEvent[] = [
     title: 'HackEvol 1.0',
     date: 'May 24, 2026',
     category: 'Upcoming Hackathon',
-<<<<<<< HEAD
     description: 'A 48-hour build sprint for students ready to turn bold ideas into working prototypes.',
     extendedDescription:
       'HackEvol 1.0 is designed for fast team collaboration, mentor check-ins, and demo-day momentum. Participants will work on meaningful solutions and present them to reviewers at the end of the sprint.',
@@ -114,14 +85,6 @@ const upcomingEvents: EvolvitEvent[] = [
     color: '#06b6d4',
     emoji: 'AI',
     registrationUrl: 'https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID/viewform',
-=======
-    description: 'Get ready for the biggest 48-hour hackathon of the year.',
-    extendedDescription:
-      'We are gearing up for HackEvol 1.0! Stay tuned for more updates, themes, and prize pool announcements. Prepare your teams for an extraordinary 48 hours of building solutions that matter.',
-    color: '#f59e0b',
-    emoji: '🚀',
-    images: ['https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=400&h=300&fit=crop'],
->>>>>>> aedec0e (first commit)
   },
 ];
 
@@ -311,30 +274,12 @@ const container = {
 };
 
 const cardVariant = {
-<<<<<<< HEAD
   hidden: { opacity: 0, y: 50, filter: 'blur(8px)' },
-=======
-  hidden: { opacity: 0, y: 52, filter: 'blur(10px)' },
->>>>>>> aedec0e (first commit)
   show: {
     opacity: 1,
     y: 0,
     filter: 'blur(0px)',
-<<<<<<< HEAD
     transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
-  },
-};
-
-function EventCard({
-  event,
-  onSelect,
-  showRegisterButton = false,
-}: {
-  event: EvolvitEvent;
-  onSelect: (event: EvolvitEvent) => void;
-  showRegisterButton?: boolean;
-=======
-    transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] },
   },
 };
 
@@ -345,9 +290,8 @@ function EventCard({
   isUpcoming = false,
 }: {
   event: EvolvitEvent;
-  onSelect: (e: EvolvitEvent) => void;
+  onSelect: (event: EvolvitEvent) => void;
   isUpcoming?: boolean;
->>>>>>> aedec0e (first commit)
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
@@ -361,23 +305,12 @@ function EventCard({
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-<<<<<<< HEAD
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateX = ((y - centerY) / centerY) * -4;
-    const rotateY = ((x - centerX) / centerX) * 4;
-
-    card.style.transform =
-      `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) ` +
-      'translateY(-6px) scale(1.02)';
-=======
     const cx = rect.width / 2;
     const cy = rect.height / 2;
     const rx = ((y - cy) / cy) * -5;
     const ry = ((x - cx) / cx) * 5;
     card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-8px) scale(1.02)`;
     if (glow) glow.style.opacity = '1';
->>>>>>> aedec0e (first commit)
   };
 
   const handleMouseLeave = () => {
@@ -402,11 +335,6 @@ function EventCard({
         style={{ background: `radial-gradient(circle, ${event.color}60 0%, transparent 70%)`, opacity: 0 }}
       />
 
-<<<<<<< HEAD
-      <div className={styles.cardBorderGlow} />
-
-      <article className={styles.card}>
-=======
       {/* Spinning gradient border */}
       <div className={styles.cardBorderGlow} />
 
@@ -415,7 +343,6 @@ function EventCard({
         <div className={styles.circuitOverlay} />
 
         {/* Scanning laser on hover */}
->>>>>>> aedec0e (first commit)
         <motion.div
           className={styles.cardHighlight}
           style={{ background: `linear-gradient(90deg, transparent, ${event.color}, transparent)` }}
@@ -423,15 +350,6 @@ function EventCard({
           whileHover={{ opacity: 1, x: '100%', transition: { repeat: Infinity, duration: 1.8, ease: 'linear' } }}
         />
 
-<<<<<<< HEAD
-        <div className={styles.cardTop} style={{ background: `linear-gradient(180deg, ${event.color}06 0%, transparent 100%)` }}>
-          <div
-            className={styles.categoryBadge}
-            style={{ color: event.color, borderColor: `${event.color}30`, background: `${event.color}08` }}
-          >
-            <span className={styles.glowDot} style={{ background: event.color, boxShadow: `0 0 8px ${event.color}` }} />
-            {event.category}
-=======
         {/* Corner accents */}
         <CornerAccent color={event.color} position="tl" />
         <CornerAccent color={event.color} position="br" />
@@ -452,7 +370,6 @@ function EventCard({
 
             {/* Status badge */}
             <StatusBadge status={status} />
->>>>>>> aedec0e (first commit)
           </div>
 
           {/* Emoji icon */}
@@ -461,10 +378,7 @@ function EventCard({
           </div>
         </div>
 
-<<<<<<< HEAD
-=======
         {/* ── Card Body ─────────────────────────────── */}
->>>>>>> aedec0e (first commit)
         <div className={styles.cardBody}>
           <div className={styles.cardDate}>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -486,42 +400,10 @@ function EventCard({
           {isUpcoming && <RegBar pct={34} color={event.color} />}
         </div>
 
-<<<<<<< HEAD
-        <div className={styles.cardFooter}>
-          <div className={styles.footerDivider} />
-          <div className={styles.cardActions}>
-            <span className={styles.cta_link} style={{ color: event.color }}>
-              View Details
-              <span className={styles.ctaArrow}>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </span>
-            </span>
-
-            {showRegisterButton && event.registrationUrl ? (
-              <a
-                href={event.registrationUrl}
-                target="_blank"
-                rel="noreferrer"
-                className={styles.registerButton}
-                onClick={(e) => e.stopPropagation()}
-                style={{
-                  color: event.color,
-                  borderColor: `${event.color}40`,
-                  boxShadow: `0 10px 30px ${event.color}20`,
-                }}
-              >
-                Register
-              </a>
-            ) : null}
-          </div>
-=======
         {/* ── Card Footer ───────────────────────────── */}
         <div className={styles.cardFooter}>
           <div className={styles.footerDivider} style={{ background: `linear-gradient(90deg, transparent, ${event.color}20, transparent)` }} />
           <RippleButton color={event.color} onClick={() => onSelect(event)} />
->>>>>>> aedec0e (first commit)
         </div>
       </article>
     </motion.div>
@@ -533,7 +415,6 @@ export default function Events() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
   const [selectedEvent, setSelectedEvent] = useState<EvolvitEvent | null>(null);
-  const [showUpcomingEvents, setShowUpcomingEvents] = useState(false);
 
   return (
     <section id="events" className={styles.events} ref={ref}>
@@ -559,42 +440,6 @@ export default function Events() {
         </motion.div>
 
         {upcomingEvents.length > 0 ? (
-<<<<<<< HEAD
-          <>
-            <div className={styles.upcomingActions}>
-              <button
-                type="button"
-                className={styles.primaryRegisterButton}
-                onClick={() => setShowUpcomingEvents((prev) => !prev)}
-              >
-                {showUpcomingEvents ? 'Hide Upcoming Events' : 'Register for Next Event'}
-              </button>
-            </div>
-
-            {showUpcomingEvents ? (
-              <motion.div
-                className={styles.grid}
-                variants={container}
-                initial="hidden"
-                animate={inView ? 'show' : 'hidden'}
-                style={{ marginBottom: '80px' }}
-              >
-                {upcomingEvents.map((event) => (
-                  <EventCard
-                    key={event.title}
-                    event={event}
-                    onSelect={setSelectedEvent}
-                    showRegisterButton
-                  />
-                ))}
-              </motion.div>
-            ) : (
-              <div className={styles.upcomingHint}>
-                <p>Click the button above to view all upcoming events and open their registration forms.</p>
-              </div>
-            )}
-          </>
-=======
           <motion.div
             className={`${styles.grid} ${styles.gridUpcoming}`}
             variants={container}
@@ -606,7 +451,6 @@ export default function Events() {
               <EventCard key={event.title} event={event} onSelect={setSelectedEvent} isUpcoming />
             ))}
           </motion.div>
->>>>>>> aedec0e (first commit)
         ) : (
           <div className={styles.emptyState}>
             <span className={styles.emptyIcon}>📡</span>
@@ -614,15 +458,10 @@ export default function Events() {
           </div>
         )}
 
-<<<<<<< HEAD
-        <div className="section-divider" style={{ marginBottom: '64px' }} />
-
-=======
         {/* Divider */}
         <div className={styles.sectionDivider} />
 
         {/* ── Past Events header ──────────────────────── */}
->>>>>>> aedec0e (first commit)
         <motion.div
           className={styles.header}
           initial={{ opacity: 0, y: 30 }}
