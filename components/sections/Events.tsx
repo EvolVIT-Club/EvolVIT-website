@@ -403,7 +403,25 @@ function EventCard({
         {/* ── Card Footer ───────────────────────────── */}
         <div className={styles.cardFooter}>
           <div className={styles.footerDivider} style={{ background: `linear-gradient(90deg, transparent, ${event.color}20, transparent)` }} />
-          <RippleButton color={event.color} onClick={() => onSelect(event)} />
+          <div className={styles.cardActions}>
+            <RippleButton color={event.color} onClick={() => onSelect(event)} />
+            {isUpcoming && event.registrationUrl ? (
+              <a
+                href={event.registrationUrl}
+                target="_blank"
+                rel="noreferrer"
+                className={styles.registerButton}
+                onClick={(e) => e.stopPropagation()}
+                style={{
+                  color: event.color,
+                  borderColor: `${event.color}40`,
+                  boxShadow: `0 10px 30px ${event.color}20`,
+                }}
+              >
+                Register
+              </a>
+            ) : null}
+          </div>
         </div>
       </article>
     </motion.div>
@@ -415,6 +433,7 @@ export default function Events() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
   const [selectedEvent, setSelectedEvent] = useState<EvolvitEvent | null>(null);
+  const [showUpcomingEvents, setShowUpcomingEvents] = useState(false);
 
   return (
     <section id="events" className={styles.events} ref={ref}>
@@ -440,17 +459,34 @@ export default function Events() {
         </motion.div>
 
         {upcomingEvents.length > 0 ? (
-          <motion.div
-            className={`${styles.grid} ${styles.gridUpcoming}`}
-            variants={container}
-            initial="hidden"
-            animate={inView ? 'show' : 'hidden'}
-            style={{ marginBottom: '88px' }}
-          >
-            {upcomingEvents.map((event) => (
-              <EventCard key={event.title} event={event} onSelect={setSelectedEvent} isUpcoming />
-            ))}
-          </motion.div>
+          <>
+            <div className={styles.upcomingActions}>
+              <button
+                type="button"
+                className={styles.primaryRegisterButton}
+                onClick={() => setShowUpcomingEvents((prev) => !prev)}
+              >
+                {showUpcomingEvents ? 'Hide Upcoming Events' : 'Register for Next Event'}
+              </button>
+            </div>
+            {showUpcomingEvents ? (
+              <motion.div
+                className={styles.grid}
+                variants={container}
+                initial="hidden"
+                animate={inView ? 'show' : 'hidden'}
+                style={{ marginBottom: '88px' }}
+              >
+                {upcomingEvents.map((event) => (
+                  <EventCard key={event.title} event={event} onSelect={setSelectedEvent} isUpcoming />
+                ))}
+              </motion.div>
+            ) : (
+              <div className={styles.upcomingHint}>
+                <p>Click the button above to view all upcoming events and register for the one you want.</p>
+              </div>
+            )}
+          </>
         ) : (
           <div className={styles.emptyState}>
             <span className={styles.emptyIcon}>📡</span>
@@ -494,3 +530,7 @@ export default function Events() {
     </section>
   );
 }
+
+
+
+
