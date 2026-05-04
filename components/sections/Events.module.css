@@ -415,7 +415,9 @@
 .emojiInner {
   font-size: 1.75rem;
   line-height: 1;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cardWrapper:hover .emojiContainer {
