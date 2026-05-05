@@ -53,6 +53,39 @@ function getTechIcon(category: string): React.ReactNode {
   return <span style={{ fontSize: '0.75rem' }}>&lt;/&gt;</span>;
 }
 
+function getEventCardIcon(event: EvolvitEvent): React.ReactNode {
+  const text = `${event.title} ${event.category}`.toLowerCase();
+
+  if (text.includes('visit') || text.includes('industry')) {
+    return (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M3 21h18" />
+        <path d="M5 21V8l7-4 7 4v13" />
+        <path d="M9 21v-5h6v5" />
+        <path d="M9 10h.01M12 10h.01M15 10h.01M9 13h.01M12 13h.01M15 13h.01" />
+      </svg>
+    );
+  }
+
+  if (text.includes('art') || text.includes('inaug')) {
+    return (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+        <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+        <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+        <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+        <path d="M12 3a9 9 0 0 0 0 18h1.5a2.5 2.5 0 0 0 0-5H13a2 2 0 0 1 0-4h1a7 7 0 0 0-2-9Z" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 2 15 9l7 3-7 3-3 7-3-7-7-3 7-3 3-7Z" />
+    </svg>
+  );
+}
+
 /* ── Corner accent ───────────────────────────────────────────────── */
 function CornerAccent({ color, position }: { color: string; position: 'tl' | 'br' }) {
   const isTL = position === 'tl';
@@ -166,7 +199,7 @@ function PreviewCard({ event, onSelect }: { event: EvolvitEvent; onSelect: (e: E
             className={styles.emojiContainer}
             style={{ borderColor: `${event.color}20`, boxShadow: `0 0 20px ${event.color}12` }}
           >
-            <span>{event.emoji}</span>
+            <span style={{ color: event.color }}>{getEventCardIcon(event)}</span>
           </div>
         </div>
 

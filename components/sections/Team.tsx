@@ -6,18 +6,18 @@ import styles from './Team.module.css';
 
 /* ── Data ─────────────────────────────────────────────────────────── */
 const team = [
-  { name: 'Ayush Karan', role: 'President', emoji: '👨‍💻', image: '/team/ayush.jpg', Instagram: '#', linkedin: '#', github: '#' },
-  { name: 'Parth Gholap', role: 'President', emoji: '👨‍💻', image: '/team/parth.jpg', Instagram: '#', linkedin: '#', github: '#' },
-  { name: 'Ashish Raj', role: 'General Secretary', emoji: '👩‍🔬', image: '/team/ashish.jpg', Instagram: '#', linkedin: '#', github: '#' },
+  { name: 'Ayush Karan', role: 'President', emoji: '👨‍💻', image: '/team/ayush.jpeg', Instagram: '#', linkedin: 'http://www.linkedin.com/in/ayush-karan', github: 'https://github.com/Ayush07571' },
+  { name: 'Parth Gholap', role: 'President', emoji: '👨‍💻', image: '/team/parth.jpg', Instagram: '#', linkedin: 'https://www.linkedin.com/in/parth-gholap-474696325?utm_source=share_via&utm_content=profile&utm_medium=member_android', github: 'https://github.com/Parth-Gholap' },
+  { name: 'Ashish Raj', role: 'General Secretary', emoji: '👩‍🔬', image: '/team/ashish.jpg', Instagram: '#', linkedin: 'https://www.linkedin.com/in/ashish-raj-504760319?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', github: 'https://github.com/AshishRaj1901' },
   { name: 'Abhiral Jain', role: 'Lead — Research and Dev', emoji: '👩‍🔬', image: '/team/abhiral.jpeg', Instagram: 'https://www.instagram.com/abhirallll___/', linkedin: 'https://www.linkedin.com/in/jainabhiral/', github: 'https://github.com/AbhiralJain07' },
-  { name: 'Rishi Dewangan', role: 'Lead — Technical', emoji: '🌐', image: '/team/rishi.jpg', Instagram: '#', linkedin: '#', github: '#' },
-  { name: 'Manasvi Kirkire', role: 'Lead — Design', emoji: '🎨', image: '/team/manasvi.jpg', Instagram: '#', linkedin: '#', github: '#' },
-  { name: 'Vaishnavi Singh', role: 'Lead — Media', emoji: '📷', image: '/team/vaishnavi.jpg', twitter: '#', linkedin: '#', github: '#' },
-  { name: 'Om Patel', role: 'Lead — Photography', emoji: '📸', image: '/team/om.jpg', twitter: '#', linkedin: '#', github: '#' },
+  { name: 'Rishi Dewangan', role: 'Lead — Technical', emoji: '🌐', image: '/team/rishi.jpeg', Instagram: 'https://www.instagram.com/rishidewangan493?igsh=Z21yc2xicjFpcGw0', linkedin: 'https://www.linkedin.com/in/rishi-dewangan-871399311/', github: 'https://github.com/rixhi-dwang' },
+  { name: 'Manasvi Kirkire', role: 'Lead — Design', emoji: '🎨', image: '/team/manasvi.jpg', Instagram: '#', linkedin: 'https://www.linkedin.com/in/manasvi-kirkire-7240a4324?utm_source=share_via&utm_content=profile&utm_medium=member_android', github: 'https://github.com/manasvi07kirkire' },
+  { name: 'Vaishnavi Singh', role: 'Lead — Media', emoji: '📷', image: '/team/vaishnavi.jpg', Instagram: 'https://www.instagram.com/vaish_x_singh?utm_source=qr&igsh=bGk5cXY4MWpweHNs', linkedin: 'https://www.linkedin.com/in/vaishnavi-singh-0a0709340?trk=contact-info', github: 'https://github.com/Vaishnavi2329' },
+  { name: 'Om Patel', role: 'Lead — Photography', emoji: '📸', image: '/team/om.jpeg', Instagram: 'https://www.instagram.com/ompatell_05?igsh=azJxcm1jNmEzMmdj', linkedin: 'https://www.linkedin.com/in/ompatel0511?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app', github: 'https://github.com/Om5-patel' },
 ];
 
 const faculty = [
-  { name: 'NB Prakash', role: 'Faculty Coordinator', emoji: '👨‍🏫', image: '/team/nb_prakash.jpg', Instagram: '#', linkedin: '#', github: '#' },
+  { name: 'NB Prakash', role: 'Faculty Coordinator', emoji: '👨‍🏫', image: '/team/nb_prakash.jpeg', linkedin: 'https://in.linkedin.com/in/dr-prakash-nattanmai-balasubramanian-03218033' },
 ];
 
 /* ── Colors ──────────────────────────────────────────────────────── */

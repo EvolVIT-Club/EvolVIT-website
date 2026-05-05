@@ -133,6 +133,80 @@ function getTechIcon(category: string): React.ReactNode {
   return <span style={{ fontSize: '0.85rem' }}>&lt;/&gt;</span>;
 }
 
+function getEventCardIcon(event: EvolvitEvent): React.ReactNode {
+  const text = `${event.title} ${event.category}`.toLowerCase();
+
+  if (text.includes('hack')) {
+    return (
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <polyline points="16 18 22 12 16 6" />
+        <polyline points="8 6 2 12 8 18" />
+        <line x1="14" y1="4" x2="10" y2="20" />
+      </svg>
+    );
+  }
+
+  if (text.includes('idea')) {
+    return (
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M9 18h6" />
+        <path d="M10 22h4" />
+        <path d="M12 2a7 7 0 0 0-4 12.74c.62.43 1 1.12 1 1.88V17h6v-.38c0-.76.38-1.45 1-1.88A7 7 0 0 0 12 2Z" />
+        <path d="M12 6v4" />
+      </svg>
+    );
+  }
+
+  if (text.includes('ai')) {
+    return (
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="7" y="7" width="10" height="10" rx="2" />
+        <path d="M7 2v3M12 2v3M17 2v3M7 19v3M12 19v3M17 19v3M2 7h3M2 12h3M2 17h3M19 7h3M19 12h3M19 17h3" />
+        <path d="M10 14l1.2-4h1.6l1.2 4M10.5 12.5h3" />
+      </svg>
+    );
+  }
+
+  if (text.includes('visit') || text.includes('industry')) {
+    return (
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M3 21h18" />
+        <path d="M5 21V8l7-4 7 4v13" />
+        <path d="M9 21v-5h6v5" />
+        <path d="M9 10h.01M12 10h.01M15 10h.01M9 13h.01M12 13h.01M15 13h.01" />
+      </svg>
+    );
+  }
+
+  if (text.includes('orient')) {
+    return (
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" />
+        <path d="m15.5 8.5-2 5-5 2 2-5 5-2Z" />
+        <path d="M12 12h.01" />
+      </svg>
+    );
+  }
+
+  if (text.includes('art')) {
+    return (
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+        <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+        <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+        <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+        <path d="M12 3a9 9 0 0 0 0 18h1.5a2.5 2.5 0 0 0 0-5H13a2 2 0 0 1 0-4h1a7 7 0 0 0-2-9Z" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 2 15 9l7 3-7 3-3 7-3-7-7-3 7-3 3-7Z" />
+    </svg>
+  );
+}
+
 /* ── Countdown Timer ─────────────────────────────────────────────────────── */
 function CountdownTimer({ color }: { color: string }) {
   const [time, setTime] = useState({ days: 0, hours: 0, mins: 0, secs: 0 });
@@ -374,7 +448,7 @@ function EventCard({
 
           {/* Emoji icon */}
           <div className={styles.emojiContainer} style={{ borderColor: `${event.color}20`, boxShadow: `0 0 20px ${event.color}10` }}>
-            <span className={styles.emojiInner}>{event.emoji}</span>
+            <span className={styles.emojiInner} style={{ color: event.color }}>{getEventCardIcon(event)}</span>
           </div>
         </div>
 
@@ -403,7 +477,25 @@ function EventCard({
         {/* ── Card Footer ───────────────────────────── */}
         <div className={styles.cardFooter}>
           <div className={styles.footerDivider} style={{ background: `linear-gradient(90deg, transparent, ${event.color}20, transparent)` }} />
-          <RippleButton color={event.color} onClick={() => onSelect(event)} />
+          <div className={styles.cardActions}>
+            <RippleButton color={event.color} onClick={() => onSelect(event)} />
+            {isUpcoming && event.registrationUrl ? (
+              <a
+                href={event.registrationUrl}
+                target="_blank"
+                rel="noreferrer"
+                className={styles.registerButton}
+                onClick={(e) => e.stopPropagation()}
+                style={{
+                  color: event.color,
+                  borderColor: `${event.color}40`,
+                  boxShadow: `0 10px 30px ${event.color}20`,
+                }}
+              >
+                Register
+              </a>
+            ) : null}
+          </div>
         </div>
       </article>
     </motion.div>
@@ -415,6 +507,7 @@ export default function Events() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-80px' });
   const [selectedEvent, setSelectedEvent] = useState<EvolvitEvent | null>(null);
+  const [showUpcomingEvents, setShowUpcomingEvents] = useState(false);
 
   return (
     <section id="events" className={styles.events} ref={ref}>
@@ -440,17 +533,34 @@ export default function Events() {
         </motion.div>
 
         {upcomingEvents.length > 0 ? (
-          <motion.div
-            className={`${styles.grid} ${styles.gridUpcoming}`}
-            variants={container}
-            initial="hidden"
-            animate={inView ? 'show' : 'hidden'}
-            style={{ marginBottom: '88px' }}
-          >
-            {upcomingEvents.map((event) => (
-              <EventCard key={event.title} event={event} onSelect={setSelectedEvent} isUpcoming />
-            ))}
-          </motion.div>
+          <>
+            <div className={styles.upcomingActions}>
+              <button
+                type="button"
+                className={styles.primaryRegisterButton}
+                onClick={() => setShowUpcomingEvents((prev) => !prev)}
+              >
+                {showUpcomingEvents ? 'Hide Upcoming Events' : 'Register for Next Event'}
+              </button>
+            </div>
+            {showUpcomingEvents ? (
+              <motion.div
+                className={styles.grid}
+                variants={container}
+                initial="hidden"
+                animate={inView ? 'show' : 'hidden'}
+                style={{ marginBottom: '88px' }}
+              >
+                {upcomingEvents.map((event) => (
+                  <EventCard key={event.title} event={event} onSelect={setSelectedEvent} isUpcoming />
+                ))}
+              </motion.div>
+            ) : (
+              <div className={styles.upcomingHint}>
+                <p>Click the button above to view all upcoming events and register for the one you want.</p>
+              </div>
+            )}
+          </>
         ) : (
           <div className={styles.emptyState}>
             <span className={styles.emptyIcon}>📡</span>
@@ -494,3 +604,7 @@ export default function Events() {
     </section>
   );
 }
+
+
+
+
